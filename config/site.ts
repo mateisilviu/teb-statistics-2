@@ -1,13 +1,25 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Next.js",
+  name: "Statistici termoenergetica",
   description:
     "Beautifully designed components built with Radix UI and Tailwind CSS.",
   mainNav: [
     {
-      title: "Home",
+      title: "Acasa",
       href: "/",
+    },
+    {
+      title: "Despre proiect",
+      href: "despre",
+    },
+    {
+      title: "Preturi",
+      href: "preturi",
+    },
+    {
+      title: "Termoenergetica",
+      href: "https://www.cmteb.ro/functionare_sistem_termoficare.php",
     },
   ],
   links: {
