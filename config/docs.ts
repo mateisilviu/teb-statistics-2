@@ -40,32 +40,32 @@ export const docsConfig: DocsConfig = {
             items: [
                 {
                     title: "Sectorul 1",
-                    href: "/sector1",
+                    href: "/sector/1",
                     items: [],
                 },
                 {
                     title: "Sectorul 2",
-                    href: "/sector2",
+                    href: "/sector/2",
                     items: [],
                 },
                 {
                     title: "Sectorul 3",
-                    href: "/sector3",
+                    href: "/sector/3",
                     items: [],
                 },
                 {
                     title: "Sectorul 4",
-                    href: "/sectorul4",
+                    href: "/sector/4",
                     items: [],
                 },
                 {
                     title: "Sectorul 5",
-                    href: "/sectorul5",
+                    href: "/sector/5",
                     items: [],
                 },
                 {
                     title: "Sectorul 6",
-                    href: "/sectorul6",
+                    href: "/sector/6",
                     items: [],
                 },
             ],

@@ -13,6 +13,7 @@ import { DocsSidebarNav } from "@/components/sidebar"
 import { docsConfig } from "@/config/docs"
 import getAvarii from "./actions/getAvarii"
 import { NavItemWithChildren } from "@/types/nav"
+import dashify from "dashify"
 
 export const metadata: Metadata = {
   title: {
@@ -40,12 +41,37 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const avariiRecente = await getAvarii();
   console.log("avarii layout " + avariiRecente?.termoModel.length)
 
+  const avariiItems = docsConfig.sidebarNav[1].items;
+
   avariiRecente?.termoModel.forEach(element => {
-    const newSideBarItem: NavItemWithChildren = {
-      title: element.street + " bloc " + element.flat + " sector " + element.sector,
-      items: []
+
+    const streetNavItem = avariiItems.find(sideBarElement => sideBarElement.title === element.street)
+
+    if (streetNavItem === undefined) {
+      const newSideBarItem1: NavItemWithChildren = {
+        title: element.street,
+        href: "/sector/" + element.sector + "/" + dashify(element.street),
+        items: [{
+          title: element.flat,
+          href: "/sector/" + element.sector + "/" + dashify(element.street) + "/" + dashify(element.flat),
+          items: []
+        }
+        ]
+      }
+      avariiItems.push(newSideBarItem1);
+    } else {
+      const titlehref = element.street + " bloc " + element.flat + " sector " + element.sector;
+      const newSideBarItem: NavItemWithChildren = {
+        title: titlehref,
+        href: "/sector/" + element.sector + "/" + dashify(element.street) + "/" + dashify(element.flat),
+        items: []
+      }
+      streetNavItem.items.push(newSideBarItem);
     }
-    docsConfig.sidebarNav[1].items.push(newSideBarItem);
+  });
+
+  avariiItems.forEach(element => {
+    element.label = element.items.length.toString();
   });
 
   return (
